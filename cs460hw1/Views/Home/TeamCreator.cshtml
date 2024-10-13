@@ -1,35 +1,69 @@
 @{
     ViewData["Title"] = "TeamCreator";
 }
-<h1>@ViewData["Title"]</h1>
-<h3>Each team will generate a different character from the following animes:<div>
 
-</div> Naruto, Sailor Moon, Jujutsu Kaisen, One Piece, Death Note and Code Geass</h3>
+<h1>@ViewData["Title"]</h1>
+<h3>Each team will generate a different character from the following animes:</h3>
+<div> Naruto, Sailor Moon, Jujutsu Kaisen, One Piece, Death Note, and Code Geass</div>
 
 <body>
     <div class="row row-cols-1 row-cols-sm-2 g-3">
-  <div class="col">
-    <div class="card">
-      <img src="assets/images/bs-images/img-2x1.png" class="card-img-top" alt="card-grid-image">
-      <div class="card-body">
-        <h5 class="card-title">Create Your Team</h5>
-        <p class="card-text">First and Last Names</p>
-          <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
-            <label for="floatingTextarea">Enter Names Here</label>
-          </div>
-        <a href="#" class="btn btn-primary">Generate Team</a>
-      </div>
+        <div class="col">
+            <div class="card">
+                <img src="assets/images/bs-images/img-2x1.png" class="card-img-top" alt="card-grid-image">
+                <div class="card-body">
+                    <h5 class="card-title">Create Your Team</h5>
+                    <p class="card-text">First and Last Names</p>
+                    
+                    <!-- This is where you create the teams -->
+                    <form id="team-form" method="post">
+                        <div class="form-floating">
+                            <!-- Enter the names here -->
+                            <textarea class="form-control" name="Names" placeholder="Enter Names" id="floatingTextarea" style="height: 100px"></textarea>
+                            <label for="floatingTextarea">Enter Names Here</label>
+                        </div>
+                        
+                        <div class="form-group mt-3">
+                            <!-- Number of teams goes here -->
+                            <label for="numTeams">Number of Teams</label>
+                            <input type="number" class="form-control" name="NumTeams" min="2" max="10" placeholder="Enter number of teams" required />
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary mt-3">Generate Team</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
+    <!-- Placeholder for generated teams -->
+    <div id="team-results" class="mt-4">
+        <!-- Generated teams will be rendered here -->
+    </div>
 
+    @section Scripts {
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#team-form').submit(function (e) {
+                    e.preventDefault();
 
-//right below i need to make a form so there is no page refresh, but the team names are generated down below on the page
+                    var formData = $(this).serialize();
 
-
-
-
-
-    
+                    $.ajax({
+                        url: '@Url.Action("GenerateTeams", "Home")',
+                        type: 'POST',
+                        data: formData,
+                        success: function (result) {
+                            $('#team-results').html(result); // Update the results section with the returned data
+                        },
+                        error: function (xhr) {
+                            alert("Error: " + xhr.responseText); // Alert on error
+                        }
+                    });
+                });
+            });
+        </script>
+    }
 </body>

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("cs460hw1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a28899d1ddefde25b0cfd07e8777492ad0b45161")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a0aca2feb17f8ff592b26bb614ad5a3afbdf771")]
 [assembly: System.Reflection.AssemblyProductAttribute("cs460hw1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("cs460hw1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
