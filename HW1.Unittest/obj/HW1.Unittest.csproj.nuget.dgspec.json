@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\cs460hw1.csproj": {}
+    "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\cs460hw1.csproj": {
+    "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\cs460hw1.csproj",
-        "projectName": "cs460hw1",
-        "projectPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\cs460hw1.csproj",
+        "projectUniqueName": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj",
+        "projectName": "HW1.Unittest",
+        "projectPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj",
         "packagesPath": "C:\\Users\\nwoko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\obj\\",
+        "outputPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nwoko\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -45,7 +45,23 @@
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[17.11.1, )"
+              "version": "[17.8.0, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.14.0, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[3.9.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [
@@ -60,9 +76,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

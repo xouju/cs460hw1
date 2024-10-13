@@ -3,14 +3,12 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-<h3>Each team will generate a different character from the following animes:</h3>
-<div> Naruto, Sailor Moon, Jujutsu Kaisen, One Piece, Death Note, and Code Geass</div>
+<h3>Each team will generate a different Anime Name</h3>
 
 <body>
     <div class="row row-cols-1 row-cols-sm-2 g-3">
         <div class="col">
             <div class="card">
-                <img src="assets/images/bs-images/img-2x1.png" class="card-img-top" alt="card-grid-image">
                 <div class="card-body">
                     <h5 class="card-title">Create Your Team</h5>
                     <p class="card-text">First and Last Names</p>
@@ -25,6 +23,7 @@
                         
                         <div class="form-group mt-3">
                             <!-- Number of teams goes here -->
+                            <!-- max amount of teams are 10. min is 2. an error should throw if you try to create a team that doesn't follow the guidelines -->
                             <label for="numTeams">Number of Teams</label>
                             <input type="number" class="form-control" name="NumTeams" min="2" max="10" placeholder="Enter number of teams" required />
                         </div>
@@ -42,6 +41,9 @@
         <!-- Generated teams will be rendered here -->
     </div>
 
+    <!-- Button to change team names, initially hidden -->
+    <button id="change-team-names" class="btn btn-secondary mt-3" style="display: none;">Change Team Names</button>
+
     @section Scripts {
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
@@ -57,13 +59,44 @@
                         data: formData,
                         success: function (result) {
                             $('#team-results').html(result); // Update the results section with the returned data
+                            $('#change-team-names').show(); // Show the button after teams are generated
                         },
                         error: function (xhr) {
                             alert("Error: " + xhr.responseText); // Alert on error
                         }
                     });
                 });
+
+                //this right here is for the new names to be generated once you generate the first round of teams with the names of the students
+                //example, a button will appear and you can change the name for the teams
+                //example: team names could be death note, one piece, naruto, attack on titan, etc.
+                $('#change-team-names').click(function () {
+                    //this is the get the names from my .txt file in the css folder
+                    $.get('/css/anime_list.txt', function (data) {
+                        // Split the file content into an array of names
+                        var teamNames = data.split('\n').map(name => name.trim()).filter(name => name);
+                        //shuffle the names
+                        shuffleArray(teamNames);
+
+                        var teams = $('#team-results').children(); // Get current teams
+
+                        //assign the new names to the teams, replacing "team" --> "naruto" or "bleach", etc.
+                        teams.each(function (index) {
+                            if (index < teamNames.length) { // Ensure there are enough names
+                                $(this).find('.team-name').text(teamNames[index]); // Update the team name
+                            }
+                        });
+                    });
+                });
             });
+
+            // Function to shuffle an array
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+                }
+            }
         </script>
     }
 </body>
