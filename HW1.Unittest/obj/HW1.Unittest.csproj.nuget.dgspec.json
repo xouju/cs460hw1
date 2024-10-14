@@ -4,14 +4,14 @@
     "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj": {
+    "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\cs460hw1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj",
-        "projectName": "HW1.Unittest",
-        "projectPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj",
+        "projectUniqueName": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\cs460hw1.csproj",
+        "projectName": "cs460hw1",
+        "projectPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\cs460hw1.csproj",
         "packagesPath": "C:\\Users\\nwoko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\obj\\",
+        "outputPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nwoko\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -45,7 +45,78 @@
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[17.8.0, )"
+              "version": "[17.11.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj",
+        "projectName": "HW1.Unittest",
+        "projectPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\HW1.Unittest.csproj",
+        "packagesPath": "C:\\Users\\nwoko\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\HW1.Unittest\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\nwoko\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\cs460hw1.csproj": {
+                "projectPath": "C:\\Users\\nwoko\\Desktop\\cs460hw1\\cs460hw1\\cs460hw1.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.11.1, )"
             },
             "NUnit": {
               "target": "Package",

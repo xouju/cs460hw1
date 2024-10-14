@@ -21,6 +21,13 @@ namespace cs460hw1.Models
         [Range(2, 10, ErrorMessage = "Team size must be between 2 and 10.")]
         public int NumTeams { get; set; }
 
+        //this right here is what kinda saved me
+        //i had an issue with an error that kept appearing despite the amount of times i had to delete and re-add certain lines of code
+        //then i went to chatgpt and wondered why the "teams must be filled in" error kept popping up even though the program was made so it would create teams itself
+        //then chatgpt didn't give me a good answer so i had to think myself why it wasn't working
+        //so then i figured that it must be because the program thinks im supposed to create the names myself or something
+        //then it showed me bindnever and it was supposed to help prevent the error message popping up since it was within the system
+        //but then it wasn't working then it turns out it was an error within my teams.cs because i forgot to change the code and the bindnever was working finally
         [BindNever]
         public List<List<string>> Teams { get; set; } = new List<List<string>>();
     }

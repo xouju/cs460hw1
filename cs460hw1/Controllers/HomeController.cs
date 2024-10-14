@@ -17,6 +17,7 @@ namespace cs460hw1.Controllers
         }
 
         // Displays the index view
+        //home page of the program
         public IActionResult Index()
         {
             return View();
@@ -29,12 +30,17 @@ namespace cs460hw1.Controllers
         }
 
         // Displays the team creator view
+        //the main page that matters the most
         public IActionResult TeamCreator()
         {
             return View(new TeamCreatorViewModel { Names = string.Empty });
         }
 
         // Handles form submission to generate teams
+        //when the names are entered, it is supposed to split the names and make sure there aren't any errors, etc.
+        // From here below, I had to watch some YouTube Videos for some help.
+        // this part took quite some time because the errors were right within my eye so there was so many deletes and repasting
+        //I believe this part took a couple of hours only because I wasn't even finding the error and the error wasn't even here. It was in my Teams.cs and I forgot to change the value names
         [HttpPost]
         public IActionResult GenerateTeams(TeamCreatorViewModel model)
         {

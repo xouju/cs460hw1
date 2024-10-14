@@ -5,6 +5,7 @@
 <h1>@ViewData["Title"]</h1>
 <h3>Each team will generate a different Anime Name</h3>
 
+<!-- I used the bootstrap cheatsheat online to be able to create a card for this along with the button -->
 <body>
     <div class="row row-cols-1 row-cols-sm-2 g-3">
         <div class="col">
@@ -70,6 +71,9 @@
                 //this right here is for the new names to be generated once you generate the first round of teams with the names of the students
                 //example, a button will appear and you can change the name for the teams
                 //example: team names could be death note, one piece, naruto, attack on titan, etc.
+
+                //for this part, i had to rely on chatgpt, ww3schools for some tutorials and some youtube videos for this part
+                //i am still very rusty on javascript and i need to work on it.
                 $('#change-team-names').click(function () {
                     //this is the get the names from my .txt file in the css folder
                     $.get('/css/anime_list.txt', function (data) {
@@ -79,7 +83,7 @@
                         shuffleArray(teamNames);
 
                         var teams = $('#team-results').children(); // Get current teams
-
+s
                         //assign the new names to the teams, replacing "team" --> "naruto" or "bleach", etc.
                         teams.each(function (index) {
                             if (index < teamNames.length) { // Ensure there are enough names
