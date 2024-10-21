@@ -5,102 +5,96 @@
 <h1>@ViewData["Title"]</h1>
 <h3>Each team will generate a different Anime Name</h3>
 
-<!-- I used the bootstrap cheatsheat online to be able to create a card for this along with the button -->
-<body>
-    <div class="row row-cols-1 row-cols-sm-2 g-3">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Create Your Team</h5>
-                    <p class="card-text">First and Last Names</p>
-                    
-                    <!-- This is where you create the teams -->
-                    <form id="team-form" method="post">
-                        <div class="form-floating">
-                            <!-- Enter the names here -->
-                            <textarea class="form-control" name="Names" placeholder="Enter Names" id="floatingTextarea" style="height: 100px"></textarea>
-                            <label for="floatingTextarea">Enter Names Here</label>
-                        </div>
-                        
-                        <div class="form-group mt-3">
-                            <!-- Number of teams goes here -->
-                            <!-- max amount of teams are 10. min is 2. an error should throw if you try to create a team that doesn't follow the guidelines -->
-                            <label for="numTeams">Number of Teams</label>
-                            <input type="number" class="form-control" name="NumTeams" min="2" max="10" placeholder="Enter number of teams" required />
-                        </div>
-                        
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary mt-3">Generate Team</button>
-                    </form>
-                </div>
+<div class="row row-cols-1 row-cols-sm-2 g-3">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Create Your Team</h5>
+                <p class="card-text">First and Last Names</p>
+
+                <!-- This is where you create the teams -->
+                <form id="team-form" method="post">
+                    <div class="form-floating">
+                        <!-- Enter the names here -->
+                        <textarea class="form-control" name="Names" placeholder="Enter Names" id="floatingTextarea" style="height: 100px"></textarea>
+                        <label for="floatingTextarea">Enter Names Here</label>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <!-- Number of teams goes here -->
+                        <!-- max amount of teams are 10. min is 2. an error should throw if you try to create a team that doesn't follow the guidelines -->
+                        <label for="numTeams">Number of Teams</label>
+                        <input type="number" class="form-control" name="NumTeams" min="2" max="10" placeholder="Enter number of teams" required />
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary mt-3">Generate Team</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Placeholder for generated teams -->
-    <div id="team-results" class="mt-4">
-        <!-- Generated teams will be rendered here -->
-    </div>
+<!-- Placeholder for generated teams -->
+<div id="team-results" class="mt-4">
+    <!-- Generated teams will be rendered here -->
+</div>
 
-    <!-- Button to change team names, initially hidden -->
-    <button id="change-team-names" class="btn btn-secondary mt-3" style="display: none;">Change Team Names</button>
+<!-- Button to change team names, initially hidden -->
+<button id="change-team-names" class="btn btn-secondary mt-3" style="display: none;">Change Team Names</button>
 
-    @section Scripts {
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#team-form').submit(function (e) {
-                    e.preventDefault();
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#team-form').submit(function (e) {
+                e.preventDefault();
 
-                    var formData = $(this).serialize();
+                var formData = $(this).serialize();
 
-                    $.ajax({
-                        url: '@Url.Action("GenerateTeams", "Home")',
-                        type: 'POST',
-                        data: formData,
-                        success: function (result) {
-                            $('#team-results').html(result); // Update the results section with the returned data
-                            $('#change-team-names').show(); // Show the button after teams are generated
-                        },
-                        error: function (xhr) {
-                            alert("Error: " + xhr.responseText); // Alert on error
-                        }
-                    });
-                });
-
-                //this right here is for the new names to be generated once you generate the first round of teams with the names of the students
-                //example, a button will appear and you can change the name for the teams
-                //example: team names could be death note, one piece, naruto, attack on titan, etc.
-
-                //for this part, i had to rely on chatgpt, ww3schools for some tutorials and some youtube videos for this part
-                //i am still very rusty on javascript and i need to work on it.
-                $('#change-team-names').click(function () {
-                    //this is the get the names from my .txt file in the css folder
-                    $.get('/css/anime_list.txt', function (data) {
-                        // Split the file content into an array of names
-                        var teamNames = data.split('\n').map(name => name.trim()).filter(name => name);
-                        //shuffle the names
-                        shuffleArray(teamNames);
-
-                        var teams = $('#team-results').children(); // Get current teams
-s
-                        //assign the new names to the teams, replacing "team" --> "naruto" or "bleach", etc.
-                        teams.each(function (index) {
-                            if (index < teamNames.length) { // Ensure there are enough names
-                                $(this).find('.team-name').text(teamNames[index]); // Update the team name
-                            }
-                        });
-                    });
+                $.ajax({
+                    url: '@Url.Action("GenerateTeams", "Home")',
+                    type: 'POST',
+                    data: formData,
+                    success: function (result) {
+                        $('#team-results').html(result); // Update the results section with the returned data
+                        $('#change-team-names').show(); // Show the button after teams are generated
+                    },
+                    error: function (xhr) {
+                        alert("Error: " + xhr.responseText); // Alert on error
+                    }
                 });
             });
 
-            // Function to shuffle an array
-            function shuffleArray(array) {
-                for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-                }
+            // Handle the change of team names
+            $('#change-team-names').click(function () {
+                // Get the list of anime names from the text file
+                $.get('/css/anime_list.txt', function (data) {
+                    // Split the file content into an array of names
+                    var teamNames = data.split('\n').map(name => name.trim()).filter(name => name);
+
+                    // Shuffle the array of names
+                    shuffleArray(teamNames);
+
+                    // Select the team-name elements
+                    var teams = $('#team-results').find('.team-name');
+
+                    // Update the names of the teams with the shuffled anime names
+                    teams.each(function (index) {
+                        if (index < teamNames.length) { // Ensure there are enough names
+                            $(this).text(teamNames[index]); // Update the team name
+                        }
+                    });
+                });
+            });
+        });
+
+        // Function to shuffle an array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
             }
-        </script>
-    }
-</body>
+        }
+    </script>
+}
